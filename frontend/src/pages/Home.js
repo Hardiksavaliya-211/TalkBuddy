@@ -1,6 +1,7 @@
 import {
   Box,
   Container,
+  Image,
   Tab,
   TabList,
   TabPanel,
@@ -14,6 +15,7 @@ import Login from "../components/Login";
 import Signup from "../components/SignUp";
 import { createBrowserHistory } from "history";
 import { ChatContext } from "../context/Context";
+import photo from "../asset/bg23.png";
 function Home() {
   const history = createBrowserHistory();
   const { user } = ChatContext();
@@ -25,38 +27,48 @@ function Home() {
   }, [user]);
 
   return (
-    <Container maxW="xl" centerContent>
+    <>
       <Box
-        d="flex"
+        display="flex"
         justifyContent="center"
         p={3}
-        bg="white"
+        bg="darkcyan"
         w="100%"
-        m="40px 0 15px 0"
-        borderRadius="lg"
-        borderWidth="1px"
+        padding={4}
+        m="0 0 0px 0"
+        color={"white"}
       >
-        <Text fontSize="4xl" fontFamily="Work sans">
-          Talk-A-Tive
+        <Text
+          fontSize="5xl"
+          fontWeight={800}
+          className="font-extrabold"
+          fontFamily="revert"
+        >
+          TalkBuddy
         </Text>
       </Box>
-      <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
-        <Tabs isFitted variant="soft-rounded">
-          <TabList mb="1em">
-            <Tab>Login</Tab>
-            <Tab>Sign Up</Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel>
-              <Login />
-            </TabPanel>
-            <TabPanel>
-              <Signup />
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+      <Box m={5}>
+        <Container bg={"lightblue"} maxW="xl" centerContent>
+          <Image mt={8} src={photo} w={300} />
+          <Box w="100%" p={5}>
+            <Tabs isFitted variant="soft-rounded">
+              <TabList mb="1em">
+                <Tab color={"darkcyan"}>Login</Tab>
+                <Tab color={"darkcyan"}>Sign Up</Tab>
+              </TabList>
+              <TabPanels>
+                <TabPanel>
+                  <Login />
+                </TabPanel>
+                <TabPanel>
+                  <Signup />
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </Box>
+        </Container>
       </Box>
-    </Container>
+    </>
   );
 }
 

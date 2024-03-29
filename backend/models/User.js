@@ -16,7 +16,6 @@ const userModel = mongoose.Schema(
     },
     photo: {
       type: String,
-      required: true,
     },
   },
   {

@@ -17,7 +17,7 @@ const Signup = () => {
   const [email, setEmail] = useState();
   const [confirmpassword, setConfirmpassword] = useState();
   const [password, setPassword] = useState();
-  const [pic, setPic] = useState();
+  const [pic, setPic] = useState("");
   const [picLoading, setPicLoading] = useState(false);
 
   const submitHandler = async () => {
@@ -131,25 +131,37 @@ const Signup = () => {
 
   return (
     <VStack spacing="5px">
-      <FormControl id="first-name" isRequired>
-        <FormLabel>Name</FormLabel>
+      <FormControl p={1} id="first-name" isRequired>
+        <FormLabel fontSize={19} color={"darkcyan"}>
+          Name
+        </FormLabel>
         <Input
+          border={"2px"}
+          borderColor={"white"}
           placeholder="Enter Your Name"
           onChange={(e) => setName(e.target.value)}
         />
       </FormControl>
-      <FormControl id="email" isRequired>
-        <FormLabel>Email Address</FormLabel>
+      <FormControl p={1} id="email" isRequired>
+        <FormLabel fontSize={19} color={"darkcyan"}>
+          Email Address
+        </FormLabel>
         <Input
+          border={"2px"}
+          borderColor={"white"}
           type="email"
           placeholder="Enter Your Email Address"
           onChange={(e) => setEmail(e.target.value)}
         />
       </FormControl>
-      <FormControl id="password" isRequired>
-        <FormLabel>Password</FormLabel>
+      <FormControl p={1} id="password" isRequired>
+        <FormLabel fontSize={19} color={"darkcyan"}>
+          Password
+        </FormLabel>
         <InputGroup size="md">
           <Input
+            border={"2px"}
+            borderColor={"white"}
             type={show ? "text" : "password"}
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
@@ -161,10 +173,14 @@ const Signup = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
-      <FormControl id="password" isRequired>
-        <FormLabel>Confirm Password</FormLabel>
+      <FormControl p={1} id="password" isRequired>
+        <FormLabel fontSize={19} color={"darkcyan"}>
+          Confirm Password
+        </FormLabel>
         <InputGroup size="md">
           <Input
+            border={"2px"}
+            borderColor={"white"}
             type={show ? "text" : "password"}
             placeholder="Confirm password"
             onChange={(e) => setConfirmpassword(e.target.value)}
@@ -176,9 +192,13 @@ const Signup = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
-      <FormControl id="pic">
-        <FormLabel>Upload your Picture</FormLabel>
+      <FormControl p={1} id="pic">
+        <FormLabel fontSize={19} color={"darkcyan"}>
+          Upload your Picture
+        </FormLabel>
         <Input
+          border={"2px"}
+          borderColor={"white"}
           type="file"
           p={1.5}
           accept="image/*"
