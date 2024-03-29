@@ -26,10 +26,7 @@ const MyChat = ({ fetchAgain }) => {
         },
       };
 
-      const { data } = await axios.get(
-        "http://localhost:5173/server/chat",
-        config
-      );
+      const { data } = await axios.get("/server/chat", config);
       setChats(data);
 
       console.log(chats);

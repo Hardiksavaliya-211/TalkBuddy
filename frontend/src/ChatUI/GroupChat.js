@@ -42,10 +42,7 @@ const GroupChat = ({ children }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(
-        `http://localhost:5173/user?keyword=${search}`,
-        config
-      );
+      const { data } = await axios.get(`/user?keyword=${search}`, config);
       console.log(data);
       setLoading(false);
       setSearchResult(data);
@@ -99,7 +96,7 @@ const GroupChat = ({ children }) => {
         },
       };
       const { data } = await axios.post(
-        `http://localhost:5173/chat/group`,
+        `/chat/group`,
         {
           name: groupChatName,
           admin: user._id,

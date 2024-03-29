@@ -79,7 +79,7 @@ const SlideDrawer = () => {
       };
 
       const { data } = await axios.get(
-        ` http://localhost:5173/server/user?keyword=${search}`,
+        `/server/user?keyword=${search}`,
         config
       );
 
@@ -109,11 +109,7 @@ const SlideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(
-        ` http://localhost:5173/server/chat`,
-        { id: id },
-        config
-      );
+      const { data } = await axios.post(`/server/chat`, { id: id }, config);
       if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);
       console.log(data);

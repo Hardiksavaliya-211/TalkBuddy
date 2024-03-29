@@ -49,7 +49,7 @@ const UpdateGroupChat = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
         },
       };
       const { data } = await axios.get(
-        `http://localhost:5173/server/user?keyword=${search}`,
+        `/server/user?keyword=${search}`,
         config
       );
       setSearchResult(data);
@@ -86,7 +86,7 @@ const UpdateGroupChat = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
         },
       };
       const { data } = await axios.put(
-        `http://localhost:5173/server/chat/removegroup`,
+        `/server/chat/removegroup`,
         {
           id: selectedChat._id,
           userId: user1._id,
@@ -143,7 +143,7 @@ const UpdateGroupChat = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
         },
       };
       const { data } = await axios.put(
-        `http://localhost:5173/server/chat/addgroup`,
+        `/server/chat/addgroup`,
         {
           id: selectedChat._id,
           userId: user1._id,
@@ -178,7 +178,7 @@ const UpdateGroupChat = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
         },
       };
       const { data } = await axios.put(
-        `http://localhost:5173/server/chat/rename`,
+        `/server/chat/rename`,
         {
           id: selectedChat._id,
           name: groupChatName,
