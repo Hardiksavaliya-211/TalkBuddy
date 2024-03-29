@@ -51,7 +51,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "http://localhost:5173/server/user",
+        "/server/user",
         {
           name,
           email,
