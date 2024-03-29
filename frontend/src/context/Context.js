@@ -17,7 +17,7 @@ const Context = ({ children }) => {
     if (!userInfo) {
       history.push("/");
     }
-  }, []);
+  }, [history]);
   return (
     <mainContext.Provider
       value={{
