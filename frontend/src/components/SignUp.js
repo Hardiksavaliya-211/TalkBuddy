@@ -100,11 +100,11 @@ const Signup = () => {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "chat-app");
-      data.append("cloud_name", "dgcfkr6q5");
+      // data.append("upload_preset", "chat-app");
+      // data.append("cloud_name", "dgcfkr6q5");
       fetch("/server/upload", {
         method: "post",
-        body: pics,
+        body: data,
       })
         .then((res) => res.json())
         .then((data) => {
