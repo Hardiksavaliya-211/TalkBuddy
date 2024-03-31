@@ -84,7 +84,7 @@ const Signup = () => {
     }
   };
 
-  const postDetails = (pics) => {
+  const postDetails = async (pics) => {
     setPicLoading(true);
     if (pics === undefined) {
       toast({
@@ -96,25 +96,40 @@ const Signup = () => {
       });
       return;
     }
-    console.log(pics);
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
+      console.log(pics);
+
       data.append("file", pics);
+      console.log(data);
       // data.append("upload_preset", "chat-app");
       // data.append("cloud_name", "dgcfkr6q5");
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+
+      // Send the file to the server using fetch API or XMLHttpRequest
       fetch("/server/upload", {
-        method: "post",
+        method: "POST",
         body: data,
       })
-        .then((res) => res.json())
-        .then((data) => {
-          setPic(data.url.toString());
-          console.log(data.url.toString());
-          setPicLoading(false);
+        .then((response) => {
+          return response.json();
         })
-        .catch((err) => {
-          console.log(err);
-          setPicLoading(false);
+        .then((value) => {
+          console.log(value.photo);
+          setPic(value.photo);
+        })
+        .catch((error) => {
+          toast({
+            title: "Please Select an small image!",
+            status: "warning",
+            duration: 5000,
+            isClosable: true,
+            position: "bottom",
+          });
         });
     } else {
       toast({

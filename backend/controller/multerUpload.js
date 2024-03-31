@@ -2,6 +2,7 @@ const Upload = require("./upload");
 const Photo = require("../models/Photo");
 
 const multerUploadFile = async (req, res) => {
+  console.log(req.body);
   try {
     const upload = await Upload.uploadFile(req.file.path);
     var store = new Photo({
