@@ -4,6 +4,7 @@ import {
   Box,
   FormControl,
   IconButton,
+  Image,
   Input,
   Spinner,
   Text,
@@ -17,7 +18,7 @@ import axios from "axios";
 import "./Style.css";
 import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
-
+import photo1 from "../asset/send.png";
 const ENDPOINT = "https://talkbuddy-1.onrender.com/";
 var socket, selectedChatCompare;
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -65,7 +66,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
 
   const sendMsg = async (event) => {
-    if (event.key === "Enter" && newMessage) {
+    console.log(event);
+    if (newMessage) {
       socket.emit("stop typing", selectedChat._id);
       try {
         const config = {
@@ -96,6 +98,17 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         });
       }
     }
+  };
+
+  const videoHandler = () => {
+    toast({
+      title: "Video Calling!",
+      description: "feature comming soon",
+      status: "warning",
+      duration: 5000,
+      isClosable: true,
+      position: "bottom",
+    });
   };
 
   useEffect(() => {
@@ -150,6 +163,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       }
     }, timerLength);
   };
+
   return (
     <>
       {selectedChat ? (
@@ -219,7 +233,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               </div>
             )}
 
-            <FormControl onKeyDown={sendMsg} id="first-name" isRequired mt={3}>
+            <FormControl
+              display="flex"
+              // onKeyDown={sendMsg}
+              id="first-name"
+              isRequired
+              mt={3}
+            >
+              <image src={photo1} />
               <Input
                 variant="filled"
                 bg="#E0E0E0"
@@ -227,6 +248,18 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 value={newMessage}
                 onChange={typeHandler}
               />
+              <span
+                className="material-symbols-outlined m-1 p-2 bg-gray-200 cursor-pointer"
+                onClick={videoHandler}
+              >
+                video_call
+              </span>{" "}
+              <span
+                onClick={sendMsg}
+                className="material-symbols-outlined m-1 p-2 px-4 rounded-lg text-white hover:bg-blue-300  bg-cyan-600 cursor-pointer"
+              >
+                send
+              </span>
             </FormControl>
           </Box>
         </>

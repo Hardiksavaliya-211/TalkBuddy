@@ -4,24 +4,26 @@ import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createBrowserHistory } from "history";
-
+import { ChatContext } from "../context/Context";
+import { photo } from "../asset/send.png";
 const Signup = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
   const history = createBrowserHistory();
-
+  const { setUser } = ChatContext();
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [confirmpassword, setConfirmpassword] = useState();
   const [password, setPassword] = useState();
   const [pic, setPic] = useState("");
   const [picLoading, setPicLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const submitHandler = async () => {
-    setPicLoading(true);
+    setLoading(true);
     if (!name || !email || !password || !confirmpassword) {
       toast({
         title: "Please Fill all the Feilds",
@@ -30,7 +32,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
-      setPicLoading(false);
+      setLoading(false);
       return;
     }
     if (password !== confirmpassword) {
@@ -68,8 +70,9 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
+      setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
-      setPicLoading(false);
+      setLoading(false);
       history.push("/chat1");
     } catch (error) {
       toast({
@@ -80,7 +83,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
-      setPicLoading(false);
+      setLoading(false);
     }
   };
 
@@ -121,6 +124,7 @@ const Signup = () => {
         .then((value) => {
           console.log(value.photo);
           setPic(value.photo);
+          setPicLoading(false);
         })
         .catch((error) => {
           toast({
@@ -143,7 +147,7 @@ const Signup = () => {
       return;
     }
   };
-
+  useEffect(() => {}, [history]);
   return (
     <VStack spacing="5px">
       <FormControl p={1} id="first-name" isRequired>
@@ -225,7 +229,7 @@ const Signup = () => {
         width="100%"
         style={{ marginTop: 15 }}
         onClick={submitHandler}
-        isLoading={picLoading}
+        isLoading={loading}
       >
         Sign Up
       </Button>
